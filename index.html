@@ -10,6 +10,24 @@
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Rajdhani:wght@400;600;700&display=swap" rel="stylesheet">
 
 <style>
+/* ===== AUTO COLOR CYCLE ===== */
+@keyframes colorCycle {
+  0%   { --c1:#ff4ecd; --c2:#00c6ff; }
+  25%  { --c1:#00eaff; --c2:#7a5cff; }
+  50%  { --c1:#8a2be2; --c2:#ff0080; }
+  75%  { --c1:#00c6ff; --c2:#00ffaa; }
+  100% { --c1:#ff4ecd; --c2:#00c6ff; }
+}
+
+:root {
+  --c1:#ff4ecd;
+  --c2:#00c6ff;
+}
+
+body {
+  animation: colorCycle 12s linear infinite;
+}
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -33,9 +51,9 @@ body {
   inset: 0;
   z-index: 0;
   background:
-    radial-gradient(circle at 20% 20%, rgba(255,0,150,0.25), transparent 40%),
-    radial-gradient(circle at 80% 30%, rgba(0,200,255,0.25), transparent 40%),
-    radial-gradient(circle at 50% 80%, rgba(120,0,255,0.25), transparent 40%),
+    radial-gradient(circle at 20% 20%, color-mix(in srgb, var(--c1) 30%, transparent), transparent 40%),
+    radial-gradient(circle at 80% 30%, color-mix(in srgb, var(--c2) 30%, transparent), transparent 40%),
+    radial-gradient(circle at 50% 80%, color-mix(in srgb, var(--c1) 20%, transparent), transparent 40%),
     linear-gradient(180deg, #05010a, #000);
   animation: bgMove 18s linear infinite;
 }
@@ -45,7 +63,7 @@ body {
   100% { background-position: 100% 100%; }
 }
 
-/* ===== MAIN CONTAINER ===== */
+/* ===== CONTAINER ===== */
 .container {
   position: relative;
   z-index: 2;
@@ -60,8 +78,8 @@ body {
   font-family: 'Bebas Neue', cursive;
   font-size: 32px;
   letter-spacing: 2px;
-  color: #ff4ecd;
-  text-shadow: 0 0 14px rgba(255,0,120,0.6);
+  color: var(--c1);
+  text-shadow: 0 0 14px var(--c1);
 }
 
 .subtitle {
@@ -79,16 +97,16 @@ body {
   width: 100%;
   padding: 16px;
   border-radius: 14px;
-  background: linear-gradient(135deg, #0088cc, #00c6ff);
+  background: linear-gradient(135deg, var(--c1), var(--c2));
   color: #fff;
   text-decoration: none;
   font-size: 18px;
   font-weight: 600;
   letter-spacing: 0.6px;
-  box-shadow: 0 0 28px rgba(0,200,255,0.4);
+  box-shadow: 0 0 28px color-mix(in srgb, var(--c2) 60%, transparent);
 }
 
-/* CTA text animation */
+/* CTA TEXT ANIMATION */
 .btn-text {
   position: relative;
   animation: textFloat 2.8s ease-in-out infinite;
@@ -152,7 +170,7 @@ body {
   border-radius: 12px;
   font-size: 13px;
   z-index: 9999;
-  box-shadow: 0 0 28px rgba(0,200,255,0.45);
+  box-shadow: 0 0 28px var(--c2);
 }
 </style>
 </head>
@@ -173,7 +191,6 @@ body {
   </a>
 
   <div class="trust">18+ • Private • Instant Access</div>
-
   <div class="footer">© 2026 cinetimetv.store</div>
 </div>
 
@@ -185,7 +202,7 @@ body {
   Current Link: <span id="statLink">-</span><br>
   Clicks Used: <span id="statUsed">0</span> / 100<br>
   Next Shuffle In: <span id="statRemain">100</span><br><br>
-  <a href="#" onclick="lockAdmin()" style="color:#00c6ff;text-decoration:none;">Lock</a>
+  <a href="#" onclick="lockAdmin()" style="color:var(--c2);text-decoration:none;">Lock</a>
 </div>
 
 <script>
@@ -239,16 +256,37 @@ btn.addEventListener("click", () => {
   updateAdminStats();
 });
 
-/* ===== ADMIN UNLOCK (Ctrl + Shift + A) ===== */
+/* ===== ADMIN UNLOCK ===== */
+// Desktop: Ctrl + Shift + A
 document.addEventListener("keydown", (e) => {
   if (e.ctrlKey && e.shiftKey && e.key.toLowerCase() === "a") {
-    const pass = prompt("Admin Password:");
-    if (pass === ADMIN_PASSWORD) {
-      document.getElementById("adminPanel").style.display = "block";
-      updateAdminStats();
-    }
+    unlockAdmin();
   }
 });
+
+// Mobile: 7 taps on title
+let tapCount = 0;
+let tapTimer = null;
+
+document.querySelector(".title").addEventListener("click", () => {
+  tapCount++;
+  if (tapCount === 1) {
+    tapTimer = setTimeout(() => tapCount = 0, 2000);
+  }
+  if (tapCount === 7) {
+    tapCount = 0;
+    clearTimeout(tapTimer);
+    unlockAdmin();
+  }
+});
+
+function unlockAdmin() {
+  const pass = prompt("Admin Password:");
+  if (pass === ADMIN_PASSWORD) {
+    document.getElementById("adminPanel").style.display = "block";
+    updateAdminStats();
+  }
+}
 
 function lockAdmin() {
   document.getElementById("adminPanel").style.display = "none";
