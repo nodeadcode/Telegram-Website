@@ -1,170 +1,185 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Join Our Telegram</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="robots" content="noindex,nofollow">
+<meta charset="UTF-8">
+<title>Adults Only</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex,nofollow">
 
-  <!-- GTA STYLE FONTS -->
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Rajdhani:wght@400;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Rajdhani:wght@400;600;700&display=swap" rel="stylesheet">
 
-  <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      font-family: 'Rajdhani', Arial, sans-serif;
-    }
+<style>
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Rajdhani', sans-serif;
+}
 
-    body {
-      min-height: 100vh;
-      background: #000;
-      color: #fff;
-      overflow: hidden;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
+body {
+  min-height: 100vh;
+  background: #000;
+  color: #fff;
+  overflow: hidden;
+}
 
-    /* ===== GTA ANIMATED BACKGROUND ===== */
-    .gta-bg {
-      position: fixed;
-      inset: 0;
-      z-index: 0;
-      background:
-        radial-gradient(circle at 20% 20%, rgba(255,0,150,0.25), transparent 40%),
-        radial-gradient(circle at 80% 30%, rgba(0,200,255,0.25), transparent 40%),
-        radial-gradient(circle at 50% 80%, rgba(120,0,255,0.25), transparent 40%),
-        linear-gradient(180deg, #05010a, #000);
-      animation: bgMove 18s linear infinite;
-    }
+/* ===== ANIME SEDUCTIVE BACKGROUND ===== */
+.bg {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  background:
+    radial-gradient(circle at 20% 30%, rgba(255,0,120,0.35), transparent 45%),
+    radial-gradient(circle at 80% 40%, rgba(180,0,255,0.35), transparent 45%),
+    radial-gradient(circle at 50% 80%, rgba(0,200,255,0.25), transparent 45%),
+    linear-gradient(180deg, #050008, #000);
+  animation: pulse 14s ease-in-out infinite alternate;
+}
 
-    @keyframes bgMove {
-      0% { background-position: 0% 0%; }
-      100% { background-position: 100% 100%; }
-    }
+@keyframes pulse {
+  from { filter: brightness(1); }
+  to { filter: brightness(1.25); }
+}
 
-    /* ===== MOVING NEON LINES ===== */
-    .light {
-      position: absolute;
-      width: 2px;
-      height: 140px;
-      background: linear-gradient(to bottom, transparent, #00eaff, transparent);
-      opacity: 0.6;
-      animation: fall 6s linear infinite;
-    }
+/* ===== AGE GATE ===== */
+#ageGate {
+  position: fixed;
+  inset: 0;
+  z-index: 5;
+  background: rgba(0,0,0,0.92);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
 
-    .light:nth-child(1) { left: 20%; animation-delay: 0s; }
-    .light:nth-child(2) { left: 50%; animation-delay: 2s; }
-    .light:nth-child(3) { left: 75%; animation-delay: 4s; }
+.age-box {
+  max-width: 360px;
+  padding: 30px;
+  border-radius: 16px;
+  background: rgba(255,255,255,0.08);
+  backdrop-filter: blur(14px);
+}
 
-    @keyframes fall {
-      0% { top: -160px; }
-      100% { top: 110%; }
-    }
+.age-box h1 {
+  font-family: 'Bebas Neue';
+  font-size: 34px;
+  letter-spacing: 2px;
+  color: #ff4ecd;
+  margin-bottom: 10px;
+}
 
-    /* ===== CONTENT ===== */
-    .container {
-      position: relative;
-      z-index: 2;
-      width: 100%;
-      max-width: 380px;
-      padding: 30px 22px;
-      text-align: center;
-      backdrop-filter: blur(14px);
-    }
+.age-box p {
+  font-size: 14px;
+  opacity: 0.85;
+  margin-bottom: 20px;
+}
 
-    .title {
-      font-family: 'Bebas Neue', cursive;
-      font-size: 32px;
-      letter-spacing: 2px;
-      margin-bottom: 6px;
-      text-shadow: 0 0 14px rgba(0,200,255,0.7);
-    }
+.age-btn {
+  display: block;
+  margin: 10px 0;
+  padding: 14px;
+  border-radius: 12px;
+  text-decoration: none;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
 
-    .subtitle {
-      font-size: 15px;
-      letter-spacing: 0.6px;
-      opacity: 0.85;
-      margin-bottom: 26px;
-    }
+.enter {
+  background: linear-gradient(135deg, #ff0080, #00c6ff);
+  color: #fff;
+}
 
-    .btn {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 12px;
-      width: 100%;
-      padding: 16px;
-      margin: 12px 0;
-      background: linear-gradient(135deg, #ff0080, #00c6ff);
-      border-radius: 14px;
-      text-decoration: none;
-      color: #fff;
-      font-size: 18px;
-      font-weight: 600;
-      letter-spacing: 0.6px;
-      transition: transform 0.25s ease, box-shadow 0.25s ease;
-      box-shadow: 0 0 28px rgba(0,200,255,0.4);
-    }
+.leave {
+  border: 1px solid #555;
+  color: #aaa;
+}
 
-    .btn:hover {
-      transform: translateY(-4px) scale(1.03);
-      box-shadow: 0 0 45px rgba(255,0,150,0.65);
-    }
+/* ===== CONTENT ===== */
+#content {
+  display: none;
+  position: relative;
+  z-index: 2;
+}
 
-    .btn span {
-      font-size: 21px;
-    }
+.container {
+  max-width: 380px;
+  margin: auto;
+  padding: 40px 22px;
+  text-align: center;
+}
 
-    .footer {
-      margin-top: 26px;
-      font-size: 12px;
-      letter-spacing: 0.4px;
-      opacity: 0.6;
-    }
-  </style>
+.title {
+  font-family: 'Bebas Neue';
+  font-size: 30px;
+  letter-spacing: 2px;
+  color: #ff4ecd;
+  text-shadow: 0 0 12px rgba(255,0,120,0.6);
+}
+
+.subtitle {
+  font-size: 14px;
+  opacity: 0.85;
+  margin-bottom: 28px;
+}
+
+.btn {
+  display: block;
+  padding: 16px;
+  margin: 12px 0;
+  border-radius: 14px;
+  background: linear-gradient(135deg, #ff0080, #8a2be2);
+  color: #fff;
+  text-decoration: none;
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: 0.6px;
+  box-shadow: 0 0 28px rgba(255,0,150,0.4);
+}
+
+.footer {
+  margin-top: 26px;
+  font-size: 12px;
+  opacity: 0.5;
+}
+</style>
 </head>
 
 <body>
 
-  <!-- GTA BACKGROUND -->
-  <div class="gta-bg">
-    <div class="light"></div>
-    <div class="light"></div>
-    <div class="light"></div>
-  </div>
+<div class="bg"></div>
 
-  <!-- CONTENT -->
+<!-- AGE GATE -->
+<div id="ageGate">
+  <div class="age-box">
+    <h1>18+ ONLY</h1>
+    <p>This page contains adult-themed content.<br>You must be 18 or older.</p>
+    <a class="age-btn enter" href="#" onclick="enterSite()">I AM 18+</a>
+    <a class="age-btn leave" href="https://google.com">LEAVE</a>
+  </div>
+</div>
+
+<!-- MAIN CONTENT -->
+<div id="content">
   <div class="container">
-    <div class="title">JOIN OUR TELEGRAM</div>
-    <div class="subtitle">GTA-Style Access Zones</div>
+    <div class="title">PRIVATE ACCESS</div>
+    <div class="subtitle">Adults-only anime inspired zones</div>
 
-    <a class="btn" href="https://t.me/+Igtl92pgm8Y4ZDU1">
-      <span>🚀</span> Exclusive
-    </a>
+    <a class="btn" href="#">🔥 Exclusive</a>
+    <a class="btn" href="#">💎 VIP</a>
+    <a class="btn" href="#">⚡ Premium</a>
+    <a class="btn" href="#">🔒 Private Group</a>
 
-    <a class="btn" href="https://t.me/+n4UQw5bhy-ExM2Y1">
-      <span>💎</span> VIP Access
-    </a>
-
-    <a class="btn" href="https://t.me/+n4UQw5bhy-ExM2Y1">
-      <span>⚡</span> Premium
-    </a>
-
-    <a class="btn" href="https://t.me/+fWTEc3NSgM1jYTk1">
-      <span>🎬</span> Movies Hub
-    </a>
-
-    <a class="btn" href="https://t.me/+Xj8gNOpk4IU2OWM1">
-      <span>🔒</span> Private Group
-    </a>
-
-    <div class="footer">
-      © 2026 cinetimetv.store
-    </div>
+    <div class="footer">© 2026 cinetimetv.store</div>
   </div>
+</div>
+
+<script>
+function enterSite() {
+  document.getElementById("ageGate").style.display = "none";
+  document.getElementById("content").style.display = "block";
+}
+</script>
 
 </body>
 </html>
