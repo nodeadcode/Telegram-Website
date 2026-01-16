@@ -2,10 +2,11 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Adults Only</title>
+<title>Private Access</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="robots" content="noindex,nofollow">
 
+<!-- FONTS -->
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Rajdhani:wght@400;600;700&display=swap" rel="stylesheet">
 
 <style>
@@ -21,120 +22,115 @@ body {
   background: #000;
   color: #fff;
   overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-/* ===== ANIME SEDUCTIVE BACKGROUND ===== */
-.bg {
+/* ===== ANIMATED BACKGROUND ===== */
+.animated-bg {
   position: fixed;
   inset: 0;
   z-index: 0;
   background:
-    radial-gradient(circle at 20% 30%, rgba(255,0,120,0.35), transparent 45%),
-    radial-gradient(circle at 80% 40%, rgba(180,0,255,0.35), transparent 45%),
-    radial-gradient(circle at 50% 80%, rgba(0,200,255,0.25), transparent 45%),
-    linear-gradient(180deg, #050008, #000);
-  animation: pulse 14s ease-in-out infinite alternate;
+    radial-gradient(circle at 20% 20%, rgba(255,0,150,0.25), transparent 40%),
+    radial-gradient(circle at 80% 30%, rgba(0,200,255,0.25), transparent 40%),
+    radial-gradient(circle at 50% 80%, rgba(120,0,255,0.25), transparent 40%),
+    linear-gradient(180deg, #05010a, #000);
+  animation: bgMove 18s linear infinite;
 }
 
-@keyframes pulse {
-  from { filter: brightness(1); }
-  to { filter: brightness(1.25); }
+@keyframes bgMove {
+  0% { background-position: 0% 0%; }
+  100% { background-position: 100% 100%; }
 }
 
-/* ===== AGE GATE ===== */
-#ageGate {
-  position: fixed;
-  inset: 0;
-  z-index: 5;
-  background: rgba(0,0,0,0.92);
-  display: flex;
-  align-items: center;
-  justify-content: center;
+/* ===== MAIN CONTAINER ===== */
+.container {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 380px;
+  padding: 32px 22px;
   text-align: center;
-}
-
-.age-box {
-  max-width: 360px;
-  padding: 30px;
-  border-radius: 16px;
-  background: rgba(255,255,255,0.08);
   backdrop-filter: blur(14px);
 }
 
-.age-box h1 {
-  font-family: 'Bebas Neue';
-  font-size: 34px;
-  letter-spacing: 2px;
-  color: #ff4ecd;
-  margin-bottom: 10px;
-}
-
-.age-box p {
-  font-size: 14px;
-  opacity: 0.85;
-  margin-bottom: 20px;
-}
-
-.age-btn {
-  display: block;
-  margin: 10px 0;
-  padding: 14px;
-  border-radius: 12px;
-  text-decoration: none;
-  font-weight: 700;
-  letter-spacing: 1px;
-}
-
-.enter {
-  background: linear-gradient(135deg, #ff0080, #00c6ff);
-  color: #fff;
-}
-
-.leave {
-  border: 1px solid #555;
-  color: #aaa;
-}
-
-/* ===== CONTENT ===== */
-#content {
-  display: none;
-  position: relative;
-  z-index: 2;
-}
-
-.container {
-  max-width: 380px;
-  margin: auto;
-  padding: 40px 22px;
-  text-align: center;
-}
-
 .title {
-  font-family: 'Bebas Neue';
-  font-size: 30px;
+  font-family: 'Bebas Neue', cursive;
+  font-size: 32px;
   letter-spacing: 2px;
   color: #ff4ecd;
-  text-shadow: 0 0 12px rgba(255,0,120,0.6);
+  text-shadow: 0 0 14px rgba(255,0,120,0.6);
 }
 
 .subtitle {
   font-size: 14px;
   opacity: 0.85;
-  margin-bottom: 28px;
+  margin: 10px 0 24px;
 }
 
+/* ===== CTA BUTTON ===== */
 .btn {
-  display: block;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  width: 100%;
   padding: 16px;
-  margin: 12px 0;
   border-radius: 14px;
-  background: linear-gradient(135deg, #ff0080, #8a2be2);
+  background: linear-gradient(135deg, #0088cc, #00c6ff);
   color: #fff;
   text-decoration: none;
   font-size: 18px;
   font-weight: 600;
   letter-spacing: 0.6px;
-  box-shadow: 0 0 28px rgba(255,0,150,0.4);
+  box-shadow: 0 0 28px rgba(0,200,255,0.4);
+}
+
+/* CTA text animation */
+.btn-text {
+  position: relative;
+  animation: textFloat 2.8s ease-in-out infinite;
+}
+
+@keyframes textFloat {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-1.5px); }
+  100% { transform: translateY(0); }
+}
+
+.btn-text::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -120%;
+  width: 120%;
+  height: 100%;
+  background: linear-gradient(
+    120deg,
+    transparent,
+    rgba(255,255,255,0.25),
+    transparent
+  );
+  animation: shine 3.5s ease-in-out infinite;
+}
+
+@keyframes shine {
+  0% { left: -120%; }
+  100% { left: 120%; }
+}
+
+.tg-icon {
+  width: 22px;
+  height: 22px;
+  fill: #fff;
+}
+
+.trust {
+  font-size: 12px;
+  opacity: 0.6;
+  margin-top: 10px;
 }
 
 .footer {
@@ -142,42 +138,130 @@ body {
   font-size: 12px;
   opacity: 0.5;
 }
+
+/* ===== ADMIN PANEL ===== */
+#adminPanel {
+  display: none;
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: rgba(0,0,0,0.88);
+  backdrop-filter: blur(12px);
+  color: #fff;
+  padding: 16px 18px;
+  border-radius: 12px;
+  font-size: 13px;
+  z-index: 9999;
+  box-shadow: 0 0 28px rgba(0,200,255,0.45);
+}
 </style>
 </head>
 
 <body>
 
-<div class="bg"></div>
+<div class="animated-bg"></div>
 
-<!-- AGE GATE -->
-<div id="ageGate">
-  <div class="age-box">
-    <h1>18+ ONLY</h1>
-    <p>This page contains adult-themed content.<br>You must be 18 or older.</p>
-    <a class="age-btn enter" href="#" onclick="enterSite()">I AM 18+</a>
-    <a class="age-btn leave" href="https://google.com">LEAVE</a>
-  </div>
+<div class="container">
+  <div class="title">PRIVATE ACCESS</div>
+  <div class="subtitle">Adults-only Telegram content</div>
+
+  <a class="btn" id="tgBtn" href="#" target="_blank">
+    <svg class="tg-icon" viewBox="0 0 24 24">
+      <path d="M22.5 2.5L1.7 10.4c-1.2.5-1.2 1.2-.2 1.5l5.2 1.6 2 6.1c.3.9.5 1.3 1 1.3.4 0 .6-.2 1-.6l3-3 6.2 4.6c1.1.6 1.9.3 2.2-1l3.6-17c.4-1.5-.6-2.1-1.9-1.4z"/>
+    </svg>
+    <span class="btn-text">UNLOCK PRIVATE CHANNEL</span>
+  </a>
+
+  <div class="trust">18+ • Private • Instant Access</div>
+
+  <div class="footer">© 2026 cinetimetv.store</div>
 </div>
 
-<!-- MAIN CONTENT -->
-<div id="content">
-  <div class="container">
-    <div class="title">PRIVATE ACCESS</div>
-    <div class="subtitle">Adults-only anime inspired zones</div>
-
-    <a class="btn" href="#">🔥 Exclusive</a>
-    <a class="btn" href="#">💎 VIP</a>
-    <a class="btn" href="#">⚡ Premium</a>
-    <a class="btn" href="#">🔒 Private Group</a>
-
-    <div class="footer">© 2026 cinetimetv.store</div>
-  </div>
+<!-- ADMIN PANEL -->
+<div id="adminPanel">
+  <strong>ADMIN STATS</strong><br><br>
+  Site Visits: <span id="statVisits">0</span><br>
+  Total Clicks: <span id="statTotal">0</span><br>
+  Current Link: <span id="statLink">-</span><br>
+  Clicks Used: <span id="statUsed">0</span> / 100<br>
+  Next Shuffle In: <span id="statRemain">100</span><br><br>
+  <a href="#" onclick="lockAdmin()" style="color:#00c6ff;text-decoration:none;">Lock</a>
 </div>
 
 <script>
-function enterSite() {
-  document.getElementById("ageGate").style.display = "none";
-  document.getElementById("content").style.display = "block";
+/* ===== SETTINGS ===== */
+const ADMIN_PASSWORD = "admin@123"; // change this
+const CLICKS_PER_LINK = 100;
+
+const telegramLinks = [
+  "https://t.me/+Igtl92pgm8Y4ZDU1",
+  "https://t.me/+n4UQw5bhy-ExM2Y1",
+  "https://t.me/+fWTEc3NSgM1jYTk1",
+  "https://t.me/+Xj8gNOpk4IU2OWM1"
+];
+
+/* ===== SITE VISITS ===== */
+let siteVisits = parseInt(localStorage.getItem("site_visits")) || 0;
+siteVisits++;
+localStorage.setItem("site_visits", siteVisits);
+
+/* ===== CLICK STORAGE ===== */
+let totalClicks = parseInt(localStorage.getItem("tg_total_clicks")) || 0;
+let clickCount = parseInt(localStorage.getItem("tg_click_count")) || 0;
+let currentLink = localStorage.getItem("tg_current_link");
+
+if (!currentLink) {
+  currentLink = telegramLinks[Math.floor(Math.random() * telegramLinks.length)];
+  localStorage.setItem("tg_current_link", currentLink);
+}
+
+const btn = document.getElementById("tgBtn");
+btn.href = currentLink;
+
+/* ===== CLICK LOGIC ===== */
+btn.addEventListener("click", () => {
+  totalClicks++;
+  clickCount++;
+
+  if (clickCount >= CLICKS_PER_LINK) {
+    clickCount = 0;
+    let newLink;
+    do {
+      newLink = telegramLinks[Math.floor(Math.random() * telegramLinks.length)];
+    } while (newLink === currentLink);
+    currentLink = newLink;
+    localStorage.setItem("tg_current_link", currentLink);
+  }
+
+  localStorage.setItem("tg_total_clicks", totalClicks);
+  localStorage.setItem("tg_click_count", clickCount);
+  btn.href = currentLink;
+  updateAdminStats();
+});
+
+/* ===== ADMIN UNLOCK (Ctrl + Shift + A) ===== */
+document.addEventListener("keydown", (e) => {
+  if (e.ctrlKey && e.shiftKey && e.key.toLowerCase() === "a") {
+    const pass = prompt("Admin Password:");
+    if (pass === ADMIN_PASSWORD) {
+      document.getElementById("adminPanel").style.display = "block";
+      updateAdminStats();
+    }
+  }
+});
+
+function lockAdmin() {
+  document.getElementById("adminPanel").style.display = "none";
+}
+
+function updateAdminStats() {
+  document.getElementById("statVisits").innerText = siteVisits;
+  document.getElementById("statTotal").innerText = totalClicks;
+  document.getElementById("statLink").innerText =
+    telegramLinks.indexOf(currentLink) + 1;
+  document.getElementById("statUsed").innerText = clickCount;
+  document.getElementById("statRemain").innerText =
+    CLICKS_PER_LINK - clickCount;
 }
 </script>
 
