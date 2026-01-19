@@ -1,77 +1,56 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Dashboard – AutoGram</title>
 <link rel="stylesheet" href="style.css">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
+
 <body>
 
-<div class="app">
+<div class="dash">
 
-<aside class="sidebar">
-  <h2>AutoGram</h2>
-  <ul>
-    <li onclick="show('groups')">👥 Groups</li>
-    <li onclick="show('message')">📨 Message</li>
-    <li onclick="show('schedule')">⏱ Schedule</li>
-    <li onclick="show('night')">🌙 Night Mode</li>
-    <li onclick="show('subscription')">💳 Subscription</li>
-    <li onclick="logout()">🚪 Logout</li>
-  </ul>
-</aside>
+  <!-- SIDEBAR -->
+  <aside class="sidebar animate-left">
+    <h2 class="logo">AutoGram</h2>
+    <nav>
+      <a class="active">👥 Groups</a>
+      <a>📨 Message</a>
+      <a>⏱ Schedule</a>
+      <a>🌙 Night Mode</a>
+      <a>💳 Subscription</a>
+      <a class="logout">Logout</a>
+    </nav>
+  </aside>
 
-<main class="main">
+  <!-- MAIN -->
+  <main class="content animate-in">
 
-<!-- GROUPS -->
-<section id="groups" class="card">
-  <h3>Add Group</h3>
-  <input id="groupLink" placeholder="https://t.me/group">
-  <input id="expiry" type="datetime-local">
-  <button onclick="addGroup()">Add</button>
+    <header class="dash-header">
+      <div>
+        <h3>Dashboard</h3>
+        <p class="muted">Telegram connected</p>
+      </div>
+      <button class="upgrade-btn">Upgrade</button>
+    </header>
 
-  <table>
-    <thead><tr><th>Group</th><th>Expires</th></tr></thead>
-    <tbody id="groupList"></tbody>
-  </table>
-</section>
+    <section class="card">
+      <h4>Add Telegram Group</h4>
+      <input placeholder="https://t.me/group">
+      <input type="datetime-local">
+      <button class="primary-btn">Add Group</button>
+    </section>
 
-<!-- MESSAGE -->
-<section id="message" class="card hidden">
-  <h3>Ad Message</h3>
-  <textarea id="msg" rows="6" placeholder="Write your message"></textarea>
-  <button onclick="saveMessage()">Save</button>
-</section>
+    <section class="card">
+      <h4>Status</h4>
+      <p class="muted">Free Trial · 2 / 2 groups used</p>
+    </section>
 
-<!-- SCHEDULE -->
-<section id="schedule" class="card hidden">
-  <h3>Delay</h3>
-  <input type="number" id="delay" value="20" min="20">
-  <button onclick="start()">Start</button>
-  <button onclick="stop()">Stop</button>
-  <p id="status"></p>
-</section>
+  </main>
 
-<!-- NIGHT MODE -->
-<section id="night" class="card hidden">
-  <label>
-    <input type="checkbox" id="nightToggle"> Enable Night Mode
-  </label>
-  <input type="time">
-  <input type="time">
-</section>
-
-<!-- SUBSCRIPTION -->
-<section id="subscription" class="card hidden">
-  <h3>Upgrade</h3>
-  <p>Pro Plan – ₹99 / month</p>
-  <button>Upgrade Now</button>
-</section>
-
-</main>
 </div>
 
-<script src="script.js"></script>
 </body>
 </html>
