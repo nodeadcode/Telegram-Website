@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Login – AutoGram</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body class="center">
+
+<div class="card">
+  <h2>Connect Telegram</h2>
+
+  <input id="apiId" placeholder="API ID">
+  <input id="apiHash" placeholder="API Hash">
+  <input id="phone" placeholder="+91 Phone Number">
+
+  <button onclick="sendOTP()">Send OTP</button>
+
+  <div id="otpBox" style="display:none">
+    <input id="otp" placeholder="Enter OTP">
+    <button onclick="verifyOTP()">Verify & Login</button>
+  </div>
+
+  <p class="hint">
+    We never store your password or OTP.
+  </p>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
