@@ -1,63 +1,75 @@
-body{
+*{
   margin:0;
-  font-family:Inter,Arial;
-  background:#0f172a;
-  color:#fff;
+  padding:0;
+  box-sizing:border-box;
+  font-family:Inter, sans-serif;
 }
 
+body{
+  background:linear-gradient(180deg,#020617,#020617 40%,#020617);
+  color:#e5e7eb;
+}
+
+/* NAV */
+.nav{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:18px 22px;
+}
+
+.logo{
+  font-size:20px;
+  font-weight:700;
+}
+
+.nav-btn{
+  text-decoration:none;
+  color:#fff;
+  background:#2563eb;
+  padding:8px 14px;
+  border-radius:8px;
+}
+
+/* HERO */
 .hero{
-  padding:60px;
+  padding:80px 20px 60px;
+  display:flex;
+  justify-content:center;
+}
+
+.hero-box{
+  max-width:720px;
   text-align:center;
 }
 
-.btn{
-  background:#2563eb;
-  padding:12px 20px;
-  color:#fff;
-  text-decoration:none;
-  border-radius:6px;
-}
-
-.center{
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  height:100vh;
-}
-
-.card{
-  background:#020617;
-  padding:20px;
-  border-radius:10px;
-  margin:20px;
-}
-
-input,textarea,button{
-  width:100%;
-  margin-top:10px;
-  padding:10px;
+.badge{
+  display:inline-block;
   background:#020617;
   border:1px solid #1e293b;
-  color:#fff;
+  padding:6px 12px;
+  border-radius:999px;
+  font-size:13px;
+  margin-bottom:16px;
 }
 
-button{
+.hero h1{
+  font-size:36px;
+  font-weight:700;
+  line-height:1.2;
+}
+
+.hero h1 span{
+  color:#3b82f6;
+}
+
+.hero p{
+  margin:18px 0 26px;
+  font-size:16px;
+  color:#cbd5f5;
+}
+
+.cta{
+  display:inline-block;
   background:#2563eb;
-  border:none;
-  cursor:pointer;
-}
-
-.hidden{display:none;}
-
-.app{display:flex;}
-.sidebar{
-  width:220px;
-  background:#020617;
-  padding:20px;
-}
-.sidebar ul li{
-  list-style:none;
-  padding:10px;
-  cursor:pointer;
-}
-.main{flex:1;padding:20px;}
+  padding:14px 26px
