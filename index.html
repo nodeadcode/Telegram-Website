@@ -12,77 +12,120 @@
 
 <!-- NAV -->
 <nav class="nav">
-  <div class="logo">AutoGram</div>
-  <a href="login.html" class="nav-btn">Login</a>
+  <div class="container nav-inner">
+    <div class="logo">AutoGram</div>
+    <div class="nav-actions">
+      <a href="#features" class="ghost-btn">Product</a>
+      <a href="#pricing" class="ghost-btn">Pricing</a>
+      <a href="login.html" class="nav-btn">Login</a>
+    </div>
+  </div>
 </nav>
 
 <!-- HERO -->
 <section class="hero">
-  <div class="hero-box">
-    <span class="badge">🚀 Telegram Automation SaaS</span>
-    <h1>Automate Telegram Ads<br><span>Safely & Professionally</span></h1>
-    <p>
-      Forward ads to multiple groups using your own Telegram account.
-      Built-in delays, night mode, and safety rules.
-    </p>
+  <div class="container hero-grid">
+    <div class="hero-text animate-left">
+      <span class="badge">🚀 Telegram Automation SaaS</span>
+      <h1>Automate Telegram Ads<br><span>Safely & Professionally</span></h1>
+      <p>
+        Forward ads to multiple groups using your own Telegram account. Built-in delays, night mode,
+        and guardrails to keep your account safe while you scale.
+      </p>
+      <div class="hero-actions">
+        <a href="login.html" class="cta">Start Free Trial</a>
+        <a href="#pricing" class="secondary">See pricing</a>
+      </div>
+      <div class="trust">
+        <div>🔒 Official Telegram Login</div>
+        <div>⏱ 20-min Safe Delay</div>
+        <div>🌙 Night Mode</div>
+      </div>
+    </div>
 
-    <a href="login.html" class="cta">Start Free Trial</a>
-
-    <div class="trust">
-      <div>🔒 Official Telegram Login</div>
-      <div>⏱ 20-min Safe Delay</div>
-      <div>🌙 Night Mode</div>
+    <div class="hero-panel glass animate-in">
+      <div class="stat-grid">
+        <div class="stat">
+          <h4>Delivery Success</h4>
+          <strong>99.2%</strong>
+        </div>
+        <div class="stat">
+          <h4>Accounts Protected</h4>
+          <strong>1,240</strong>
+        </div>
+        <div class="stat">
+          <h4>Avg. Delay</h4>
+          <strong>20 min</strong>
+        </div>
+      </div>
+      <div class="trust" style="margin-top:6px;">
+        <div>Smart scheduling with safety buffers</div>
+        <div>Role-based access for your team</div>
+        <div>Real-time pause & resume controls</div>
+      </div>
     </div>
   </div>
 </section>
 
 <!-- FEATURES -->
-<section class="features">
-  <div class="feature-card">
-    <h3>Official Login</h3>
-    <p>OTP based Telegram login. No password stored. Full control stays with you.</p>
-  </div>
+<section id="features" class="features">
+  <div class="container feature-grid">
+    <div class="feature-card">
+      <h3>Official Login</h3>
+      <p>OTP based Telegram login. No password stored. Full control stays with you.</p>
+    </div>
 
-  <div class="feature-card">
-    <h3>Safe Forwarding</h3>
-    <p>Minimum 20-minute gap with smart scheduling to avoid Telegram bans.</p>
-  </div>
+    <div class="feature-card">
+      <h3>Safe Forwarding</h3>
+      <p>Minimum 20-minute gap with smart scheduling to avoid Telegram bans.</p>
+    </div>
 
-  <div class="feature-card">
-    <h3>Night Mode</h3>
-    <p>Automatically pause forwarding during night hours.</p>
+    <div class="feature-card">
+      <h3>Night Mode</h3>
+      <p>Automatically pause forwarding during night hours.</p>
+    </div>
+
+    <div class="feature-card">
+      <h3>Team Ready</h3>
+      <p>Invite teammates, separate workspaces, and track who changed what.</p>
+    </div>
   </div>
 </section>
 
 <!-- PRICING -->
-<section class="pricing">
-  <h2>Simple Pricing</h2>
+<section id="pricing" class="pricing">
+  <div class="container">
+    <h2>Simple Pricing</h2>
 
-  <div class="pricing-box">
-    <div class="price-card">
-      <h3>Free Trial</h3>
-      <p class="price">₹0</p>
-      <ul>
-        <li>✔ 2 Groups</li>
-        <li>✔ 7 Days</li>
-        <li>✔ Fixed Delay</li>
-      </ul>
-    </div>
+    <div class="pricing-box">
+      <div class="price-card">
+        <h3>Free Trial</h3>
+        <p class="price">₹0</p>
+        <ul>
+          <li>✔ 2 Groups</li>
+          <li>✔ 7 Days</li>
+          <li>✔ Fixed Delay</li>
+        </ul>
+      </div>
 
-    <div class="price-card pro">
-      <h3>Pro</h3>
-      <p class="price">₹99 / month</p>
-      <ul>
-        <li>✔ 10 Groups</li>
-        <li>✔ Custom Delay</li>
-        <li>✔ Night Mode</li>
-      </ul>
+      <div class="price-card pro">
+        <h3>Pro</h3>
+        <p class="price">₹99 / month</p>
+        <ul>
+          <li>✔ 10 Groups</li>
+          <li>✔ Custom Delay</li>
+          <li>✔ Night Mode</li>
+          <li>✔ Priority Support</li>
+        </ul>
+      </div>
     </div>
   </div>
 </section>
 
 <footer>
-  © 2026 AutoGram · Built for Professionals
+  <div class="container">
+    © 2026 AutoGram · Built for Professionals
+  </div>
 </footer>
 
 </body>
