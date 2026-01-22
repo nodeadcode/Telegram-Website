@@ -16,41 +16,93 @@
   <aside class="sidebar animate-left">
     <h2 class="logo">AutoGram</h2>
     <nav>
-      <a class="active">👥 Groups</a>
-      <a>📨 Message</a>
-      <a>⏱ Schedule</a>
-      <a>🌙 Night Mode</a>
-      <a>💳 Subscription</a>
-      <a class="logout">Logout</a>
+      <a class="active" onclick="show('groups')">👥 Groups</a>
+      <a onclick="show('message')">📨 Message</a>
+      <a onclick="show('schedule')">⏱ Schedule</a>
+      <a onclick="show('night')">🌙 Night Mode</a>
+      <a onclick="show('subscription')">💳 Subscription</a>
+      <a class="logout" onclick="logout()">🚪 Logout</a>
     </nav>
   </aside>
+
+  <div class="overlay" onclick="toggleSidebar()"></div>
 
   <!-- MAIN -->
   <main class="content animate-in">
 
     <header class="dash-header">
       <div>
-        <h3>Dashboard</h3>
+        <h3 id="welcomeMessage">Dashboard</h3>
         <p class="muted">Telegram connected</p>
       </div>
+      <button class="hamburger" onclick="toggleSidebar()">☰</button>
       <button class="upgrade-btn">Upgrade</button>
     </header>
 
-    <section class="card">
+    <section class="card" id="groups">
       <h4>Add Telegram Group</h4>
-      <input placeholder="https://t.me/group">
-      <input type="datetime-local">
-      <button class="primary-btn">Add Group</button>
+      <input placeholder="https://t.me/group" id="groupLink">
+      <input type="datetime-local" id="expiry">
+      <button class="primary-btn" onclick="addGroup()">Add Group</button>
     </section>
 
-    <section class="card">
+    <section class="card" id="message" style="display:none;">
+      <h4>Compose Message</h4>
+      <textarea placeholder="Enter your advertisement message..." rows="4" id="messageText"></textarea>
+      <div style="display:flex; gap:10px; margin-top:12px;">
+        <button class="primary-btn" onclick="saveMessage()">Save Message</button>
+        <button class="secondary-btn" onclick="previewMessage()">Preview</button>
+      </div>
+    </section>
+
+    <section class="card" id="schedule" style="display:none;">
+      <h4>Scheduling Settings</h4>
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px;">
+        <div>
+          <label>Delay between messages (minutes)</label>
+          <input type="number" min="20" value="20" id="delay">
+        </div>
+        <div>
+          <label>Night mode start time</label>
+          <input type="time" value="22:00" id="nightStart">
+        </div>
+      </div>
+      <div style="display:flex; gap:10px; margin-top:12px;">
+        <button class="primary-btn" onclick="start()">Start Forwarding</button>
+        <button class="secondary-btn" onclick="stop()">Stop</button>
+      </div>
+    </section>
+
+    <section class="card" id="status">
       <h4>Status</h4>
-      <p class="muted">Free Trial · 2 / 2 groups used</p>
+      <p class="muted" id="statusText">Free Trial · 2 / 2 groups used</p>
+      <div class="status-grid">
+        <div class="status-item">
+          <span>Messages Sent Today</span>
+          <strong>47</strong>
+        </div>
+        <div class="status-item">
+          <span>Success Rate</span>
+          <strong>98.5%</strong>
+        </div>
+        <div class="status-item">
+          <span>Active Groups</span>
+          <strong>2</strong>
+        </div>
+      </div>
     </section>
 
   </main>
 
 </div>
+
+<script src="script.js"></script>
+<script>
+  let username = localStorage.getItem('profileName');
+  if(username){
+    document.getElementById('welcomeMessage').innerText = `Welcome, ${username}`;
+  }
+</script>
 
 </body>
 </html>

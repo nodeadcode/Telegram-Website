@@ -11,24 +11,21 @@
 <body class="auth-body">
 
 <div class="auth-card animate-in">
-  <h2>Connect Telegram</h2>
-  <p class="muted">Official OTP-based Telegram login</p>
+  <div style="text-align:center; margin-bottom:20px;">
+    <h2>Login</h2>
+    <p class="muted">Enter your name to continue</p>
+  </div>
 
-  <input placeholder="API ID">
-  <input placeholder="API Hash">
-  <input placeholder="+91 Phone number">
+  <input type="text" placeholder="Enter your name" id="nameInput" required>
 
-  <button class="primary-btn">Send OTP</button>
-
-  <div class="divider">OTP</div>
-
-  <input placeholder="Enter OTP">
-  <button class="primary-btn">Verify & Continue</button>
+  <button class="primary-btn" onclick="login()">Login</button>
 
   <p class="trust-text">
-    🔒 We never store your password or OTP
+    Welcome to AutoGram!
   </p>
 </div>
+
+<script src="script.js"></script>
 
 </body>
 </html>
