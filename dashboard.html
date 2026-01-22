@@ -1,15 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Dashboard – AutoGram</title>
-<link rel="stylesheet" href="style.css">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dashboard</title>
+  <link rel="stylesheet" href="css/style.css" />
 </head>
-
 <body>
 
+<<<<<<< HEAD
 <div class="dash">
 
   <!-- SIDEBAR -->
@@ -24,14 +23,23 @@
       <a class="logout" onclick="logout()">🚪 Logout</a>
     </nav>
   </aside>
+=======
+  <!-- HEADER -->
+  <header class="header fade-slide">
+    <h1>👋 Welcome, <span id="userName">User</span></h1>
+    <p class="subtitle">Manage your Telegram Ads Accounts</p>
+  </header>
+>>>>>>> d538e1856c414cf4a23b57016a5eeb8d12848996
 
   <div class="overlay" onclick="toggleSidebar()"></div>
 
   <!-- MAIN -->
-  <main class="content animate-in">
+  <main class="container">
 
-    <header class="dash-header">
+    <!-- PROFILE SUMMARY -->
+    <section class="profile-card fade-slide">
       <div>
+<<<<<<< HEAD
         <h3 id="welcomeMessage">Dashboard</h3>
         <p class="muted">Telegram connected</p>
       </div>
@@ -90,10 +98,32 @@
           <strong>2</strong>
         </div>
       </div>
+=======
+        <h3>👤 Profile</h3>
+        <p id="profileName">Name</p>
+      </div>
+      <div>
+        <h3>📊 Accounts</h3>
+        <p><span id="totalAccounts">0</span> total</p>
+      </div>
+    </section>
+
+    <!-- ADD ACCOUNT -->
+    <section class="actions fade-slide">
+      <button class="btn-primary" onclick="openAddAccount()">
+        ➕ Add Telegram Ads Account
+      </button>
+    </section>
+
+    <!-- ACCOUNTS LIST -->
+    <section id="accountsContainer" class="accounts-grid">
+      <!-- Account cards injected by JS -->
+>>>>>>> d538e1856c414cf4a23b57016a5eeb8d12848996
     </section>
 
   </main>
 
+<<<<<<< HEAD
 </div>
 
 <script src="script.js"></script>
@@ -104,5 +134,8 @@
   }
 </script>
 
+=======
+  <script src="js/app.js"></script>
+>>>>>>> d538e1856c414cf4a23b57016a5eeb8d12848996
 </body>
 </html>

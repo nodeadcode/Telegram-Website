@@ -1,0 +1,100 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: system-ui, sans-serif;
+}
+
+body {
+  background: #0f172a;
+  color: #e5e7eb;
+}
+
+.header {
+  padding: 24px;
+  text-align: center;
+}
+
+.subtitle {
+  opacity: 0.8;
+  margin-top: 6px;
+}
+
+.container {
+  max-width: 1100px;
+  margin: auto;
+  padding: 20px;
+}
+
+.profile-card {
+  background: #111827;
+  border-radius: 12px;
+  padding: 16px;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.actions {
+  text-align: right;
+  margin-bottom: 20px;
+}
+
+.btn-primary {
+  background: #22c55e;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.accounts-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 16px;
+}
+
+/* ACCOUNT CARD */
+.account-card {
+  background: #020617;
+  border-radius: 14px;
+  padding: 16px;
+  border: 1px solid #1e293b;
+}
+
+.status {
+  font-size: 13px;
+  margin-bottom: 8px;
+}
+
+.running { color: #22c55e; }
+.stopped { color: #ef4444; }
+
+/* ANIMATION */
+.fade-slide {
+  animation: fadeSlide 0.7s ease-out;
+}
+
+@keyframes fadeSlide {
+  from {
+    opacity: 0;
+    transform: translateY(-12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* MOBILE */
+@media (max-width: 600px) {
+  .profile-card {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .actions {
+    text-align: center;
+  }
+}
