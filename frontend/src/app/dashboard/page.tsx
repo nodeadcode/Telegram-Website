@@ -33,7 +33,7 @@ interface Group {
 }
 
 // --- API Helper ---
-const API_URL = "";
+const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
 
 export default function DashboardPage() {
     const router = useRouter();
@@ -347,6 +347,139 @@ export default function DashboardPage() {
                         </div>
                     </div>
                 )}
+
+                {activeTab === 'billing' && (
+                    <div className="max-w-4xl">
+                        <div className="glass p-6 md:p-8 rounded-xl border border-slate-800 mb-6">
+                            <div className="flex items-center justify-between mb-6">
+                                <div>
+                                    <h3 className="text-xl md:text-2xl font-bold mb-2">Pro Plan</h3>
+                                    <p className="text-slate-400">Unlimited accounts & ad groups</p>
+                                </div>
+                                <div className="text-right">
+                                    <div className="text-3xl font-bold text-indigo-400">$29</div>
+                                    <div className="text-sm text-slate-500">per month</div>
+                                </div>
+                            </div>
+                            <div className="border-t border-slate-700 pt-6">
+                                <div className="flex items-center justify-between mb-3">
+                                    <span className="text-slate-300">Next billing date</span>
+                                    <span className="font-medium">Feb 23, 2026</span>
+                                </div>
+                                <div className="flex items-center justify-between mb-3">
+                                    <span className="text-slate-300">Payment method</span>
+                                    <span className="font-medium">•••• 4242</span>
+                                </div>
+                                <div className="flex items-center justify-between">
+                                    <span className="text-slate-300">Status</span>
+                                    <span className="px-3 py-1 bg-green-500/20 text-green-400 rounded-full text-sm font-medium">Active</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className="glass p-6 md:p-8 rounded-xl border border-slate-800">
+                            <h3 className="text-lg font-bold mb-4">Billing History</h3>
+                            <div className="space-y-3">
+                                {[
+                                    { date: 'Jan 23, 2026', amount: '$29.00', status: 'Paid' },
+                                    { date: 'Dec 23, 2025', amount: '$29.00', status: 'Paid' },
+                                    { date: 'Nov 23, 2025', amount: '$29.00', status: 'Paid' },
+                                ].map((invoice, idx) => (
+                                    <div key={idx} className="flex items-center justify-between p-4 bg-slate-900/50 rounded-lg border border-slate-800">
+                                        <div>
+                                            <div className="font-medium">{invoice.date}</div>
+                                            <div className="text-sm text-slate-500">Invoice #{1000 + idx}</div>
+                                        </div>
+                                        <div className="text-right">
+                                            <div className="font-bold text-indigo-400">{invoice.amount}</div>
+                                            <div className="text-sm text-green-400">{invoice.status}</div>
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
+                            <button className="mt-6 btn btn-primary w-full justify-center">
+                                <CreditCard size={18} /> Update Payment Method
+                            </button>
+                        </div>
+                    </div>
+                )}
+
+                {activeTab === 'settings' && (
+                    <div className="max-w-4xl space-y-6">
+                        <div className="glass p-6 md:p-8 rounded-xl border border-slate-800">
+                            <h3 className="text-lg font-bold mb-4">Profile Settings</h3>
+                            <div className="space-y-4">
+                                <div>
+                                    <label className="block text-sm font-medium text-slate-300 mb-2">Display Name</label>
+                                    <input
+                                        type="text"
+                                        className="input-field"
+                                        value={profileName}
+                                        onChange={(e) => setProfileName(e.target.value)}
+                                    />
+                                </div>
+                                <div>
+                                    <label className="block text-sm font-medium text-slate-300 mb-2">Email</label>
+                                    <input
+                                        type="email"
+                                        className="input-field"
+                                        placeholder="your@email.com"
+                                    />
+                                </div>
+                                <button className="btn btn-primary">Save Changes</button>
+                            </div>
+                        </div>
+
+                        <div className="glass p-6 md:p-8 rounded-xl border border-slate-800">
+                            <h3 className="text-lg font-bold mb-4">Automation Settings</h3>
+                            <div className="space-y-4">
+                                <div className="flex items-center justify-between p-4 bg-slate-900/50 rounded-lg">
+                                    <div>
+                                        <div className="font-medium">Auto-forward messages</div>
+                                        <div className="text-sm text-slate-500">Automatically forward from source groups</div>
+                                    </div>
+                                    <label className="relative inline-flex items-center cursor-pointer">
+                                        <input type="checkbox" className="sr-only peer" defaultChecked />
+                                        <div className="w-11 h-6 bg-slate-700 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-indigo-600"></div>
+                                    </label>
+                                </div>
+                                <div className="flex items-center justify-between p-4 bg-slate-900/50 rounded-lg">
+                                    <div>
+                                        <div className="font-medium">Smart delay</div>
+                                        <div className="text-sm text-slate-500">Add random delay between forwards (1-5s)</div>
+                                    </div>
+                                    <label className="relative inline-flex items-center cursor-pointer">
+                                        <input type="checkbox" className="sr-only peer" defaultChecked />
+                                        <div className="w-11 h-6 bg-slate-700 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-indigo-600"></div>
+                                    </label>
+                                </div>
+                                <div className="flex items-center justify-between p-4 bg-slate-900/50 rounded-lg">
+                                    <div>
+                                        <div className="font-medium">Email notifications</div>
+                                        <div className="text-sm text-slate-500">Get notified about important events</div>
+                                    </div>
+                                    <label className="relative inline-flex items-center cursor-pointer">
+                                        <input type="checkbox" className="sr-only peer" />
+                                        <div className="w-11 h-6 bg-slate-700 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-indigo-600"></div>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className="glass p-6 md:p-8 rounded-xl border border-red-900/50">
+                            <h3 className="text-lg font-bold mb-2 text-red-400">Danger Zone</h3>
+                            <p className="text-sm text-slate-400 mb-4">Irreversible actions that affect your account</p>
+                            <div className="space-y-3">
+                                <button className="w-full md:w-auto px-4 py-2 bg-red-600/20 hover:bg-red-600/30 text-red-400 rounded-lg font-medium transition-colors border border-red-600/30">
+                                    Clear All Data
+                                </button>
+                                <button className="w-full md:w-auto px-4 py-2 bg-red-600/20 hover:bg-red-600/30 text-red-400 rounded-lg font-medium transition-colors border border-red-600/30 ml-0 md:ml-3">
+                                    Delete Account
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                )}
             </main>
 
             {/* Add Account Modal */}
@@ -459,8 +592,8 @@ function NavItem({ active, icon, label, onClick }: { active: boolean, icon: any,
         <button
             onClick={onClick}
             className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-all ${active
-                    ? 'bg-indigo-500/10 text-indigo-400 border border-indigo-500/20'
-                    : 'text-slate-400 hover:text-slate-200 hover:bg-slate-800/50'
+                ? 'bg-indigo-500/10 text-indigo-400 border border-indigo-500/20'
+                : 'text-slate-400 hover:text-slate-200 hover:bg-slate-800/50'
                 }`}
         >
             {icon}
