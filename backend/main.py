@@ -22,6 +22,8 @@ app.add_middleware(
 
 # TEMP user store (DB comes in M2)
 USERS = {}
+# Store active Telethon clients: { phone: {"client": TelegramClient, "status": "stopped/running"} }
+CLIENTS = {}
 
 # ---------- HELPERS ----------
 def verify_telegram_login(data: dict):
@@ -73,3 +75,88 @@ def telegram_auth(payload: dict):
 @app.get("/me")
 def me(user_id: str = Depends(get_current_user)):
     return {"user": USERS.get(user_id)}
+
+# ---------- TELEGRAM ACCOUNT MANAGEMENT ----------
+
+from telethon import TelegramClient, errors
+
+# Helper to get/create client session
+# In production, use session strings or files stored securely
+async def get_client(api_id, api_hash, phone):
+    session_name = f"session_{phone}"
+    client = TelegramClient(session_name, api_id, api_hash)
+    await client.connect()
+    return client
+
+@app.post("/api/send-otp")
+async def send_otp(payload: dict):
+    api_id = payload.get("apiId")
+    api_hash = payload.get("apiHash")
+    phone = payload.get("phone")
+    
+    if not all([api_id, api_hash, phone]):
+        return {"success": False, "message": "Missing fields"}
+
+    try:
+        client = TelegramClient(f"session_{phone}", api_id, api_hash)
+        await client.connect()
+        
+        if not await client.is_user_authorized():
+            await client.send_code_request(phone)
+            return {"success": True, "message": "OTP sent"}
+        else:
+            return {"success": True, "message": "Already authorized"}
+            
+    except Exception as e:
+        return {"success": False, "message": str(e)}
+
+@app.post("/api/verify-otp")
+async def verify_otp(payload: dict):
+    api_id = payload.get("apiId")
+    api_hash = payload.get("apiHash")
+    phone = payload.get("phone")
+    otp = payload.get("otp")
+
+    try:
+        client = TelegramClient(f"session_{phone}", api_id, api_hash)
+        await client.connect()
+        
+        try:
+            await client.sign_in(phone, otp)
+            return {"success": True}
+        except errors.SessionPasswordNeededError:
+            return {"success": True, "requires2FA": True}
+            
+    except Exception as e:
+        return {"success": False, "message": str(e)}
+
+@app.post("/api/verify-2fa")
+async def verify_2fa(payload: dict):
+    api_id = payload.get("apiId")
+    api_hash = payload.get("apiHash")
+    phone = payload.get("phone")
+    password = payload.get("password")
+
+    try:
+        client = TelegramClient(f"session_{phone}", api_id, api_hash)
+        await client.connect()
+        
+        await client.sign_in(password=password)
+        return {"success": True}
+            
+    except Exception as e:
+        return {"success": False, "message": str(e)}
+
+@app.post("/api/start-account")
+async def start_account(payload: dict):
+    # In a real app, this would start a background task/worker
+    phone = payload.get("phone")
+    CLIENTS[phone] = {"status": "running"} 
+    return {"success": True}
+
+@app.post("/api/stop-account")
+async def stop_account(payload: dict):
+    phone = payload.get("phone")
+    if phone in CLIENTS:
+        CLIENTS[phone]["status"] = "stopped"
+    return {"success": True}
